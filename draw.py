@@ -1,23 +1,24 @@
 from display import plot
 from math import floor
 
-def draw_line(x0, y0, x1, y1, screen, color):
-    if x0 == x1 or y0 == y1: return
+def draw_line(x0, y0, x1, y1, screen, color, isPlusX=False):
+    if x0 == x1 and y0 == y1: return
     # draw_line(x1, y1, x0, y0, screen, color)
-    print(x0, y0, x1, y1)
-    if x0 == x1 or y0 == y1: return
+    # print(x0, y0, x1, y1)
     midX = floor((x1 + x0) / 2)
     midY = floor((y1 + y0) / 2)
-    if midX == x1 or midY == y1: return
-    if midX == x0 and midX != x1:
+    if midX == x1 and midY == y1: return
+    if midX == x0 and midX != x1 and isPlusX:
         x0 += 1
+    if midX == x0 and midX != x1 and not isPlusX:
         midX += 1
-    if midY == x0 and midY != x1:
+    if midY == x0 and midY != x1 and isPlusX:
         y0 += 1
+    if midY == x0 and midY != x1 and not isPlusX:    
         midY += 1
     plot(screen, color, midX, midY)
-    draw_line(x0, y0, midX, midY, screen, color)
-    draw_line(midX, midY, x1, y1, screen, color)
+    draw_line(x0, y0, midX, midY, screen, color, True)
+    draw_line(midX, midY, x1, y1, screen, color, False)
 
 def draw_line_backup( x0, y0, x1, y1, screen, color ):
     if x0 == x1 and y0 == y1: return
