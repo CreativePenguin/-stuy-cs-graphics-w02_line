@@ -3,7 +3,16 @@ from draw import *
 
 s = new_screen()
 c = [ 0, 255, 0 ]
+'''
+points = [
+    [100, 100, 303],
+    [100, 275, 175]
+]
 
+for i in range(len(points[0]) - 1):
+    print(points[0][i], points[1][i])
+    draw_line(points[0][i], points[1][i], points[0][i + 1], points[0][i + 1], s, c)
+'''
 #octants 1 and 5
 draw_line(0, 0, XRES-1, YRES-1, s, c)
 draw_line(0, 0, XRES-1, YRES / 2, s, c)
