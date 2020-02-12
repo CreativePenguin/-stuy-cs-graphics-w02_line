@@ -1,19 +1,19 @@
-from display import *
+from display import plot
 from math import floor
 
 def draw_line(x0, y0, x1, y1, screen, color):
-    if x0 >= x1 or y0 >= y1: return
+    if x0 == x1 or y0 == y1: return
     # draw_line(x1, y1, x0, y0, screen, color)
     print(x0, y0, x1, y1)
     if x0 == x1 or y0 == y1: return
-    midX = floor(x1 + x0 / 2)
-    midY = floor(y1 + y0 / 2)
+    midX = floor((x1 + x0) / 2)
+    midY = floor((y1 + y0) / 2)
     if midX == x1 or midY == y1: return
     if midX == x0 and midX != x1:
-        print('did something')
+        x0 += 1
         midX += 1
     if midY == x0 and midY != x1:
-        print('did something')
+        y0 += 1
         midY += 1
     plot(screen, color, midX, midY)
     draw_line(x0, y0, midX, midY, screen, color)
