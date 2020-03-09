@@ -9,13 +9,13 @@ def draw_line(x0, y0, x1, y1, screen, color, isPlusX=False):
     midY = floor((y1 + y0) / 2)
     if midX == x1 and midY == y1: return
     if midX == x0 and midX != x1 and isPlusX:
-        x0 += 1
+        x0 += 1 if x0 < midX else -1
     if midX == x0 and midX != x1 and not isPlusX:
-        midX += 1
-    if midY == x0 and midY != x1 and isPlusX:
-        y0 += 1
-    if midY == x0 and midY != x1 and not isPlusX:    
-        midY += 1
+        midX += 1 if x0 < midX else -1
+    if midY == y0 and midY != y1 and isPlusX:
+        y0 += 1 if y0 < midY else -1
+    if midY == y0 and midY != y1 and not isPlusX:
+        midY += 1 if y0 < midY else -1
     plot(screen, color, midX, midY)
     draw_line(x0, y0, midX, midY, screen, color, True)
     draw_line(midX, midY, x1, y1, screen, color, False)
