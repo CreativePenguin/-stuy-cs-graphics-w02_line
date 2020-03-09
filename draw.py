@@ -2,13 +2,19 @@ from display import plot
 from math import floor
 
 def draw_line(x0, y0, x1, y1, screen, color):
-    if x0 == x1 or y0 == y1: return
+    is_done = False
+    if x0 == x1 and y0 == y1: return
+    if x1 > x0:
+        draw_line(x1, y0, x0, y1, screen, color)
+    if y1 > y0:
+        draw_line(x0, y1, x1, y0, screen, color)
     # draw_line(x1, y1, x0, y0, screen, color)
     print(x0, y0, x1, y1)
-    if x0 == x1 or y0 == y1: return
     midX = floor((x1 + x0) / 2)
     midY = floor((y1 + y0) / 2)
-    if midX == x1 or midY == y1: return
+    if midX - 1 == x1 or midY - 1 == y1: is_done = True
+    if midX == x1 or midY == y1 and is_done: return
+    # if y1 - 1 == y0 and x1 - 1 == x0: return
     if midX == x0 and midX != x1:
         x0 += 1
         midX += 1
@@ -19,7 +25,7 @@ def draw_line(x0, y0, x1, y1, screen, color):
     draw_line(x0, y0, midX, midY, screen, color)
     draw_line(midX, midY, x1, y1, screen, color)
 
-def draw_line_backup( x0, y0, x1, y1, screen, color ):
+def draw_line_backup(x0, y0, x1, y1, screen, color):
     if x0 == x1 and y0 == y1: return
     if x0 > x1: return draw_line(x1, y1, x0, y0, screen, color)
     if x1 - x0 == 0:
